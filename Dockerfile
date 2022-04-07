@@ -7,7 +7,7 @@ WORKDIR /var/www
 
 RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - \
     && apt-get update \
-    && apt-get install -y nodejs netcat libmcrypt-dev libjpeg-dev libpng-dev libfreetype6-dev libbz2-dev nodejs git \
+    && apt-get install -y nodejs netcat libmcrypt-dev libjpeg-dev libpng-dev libfreetype6-dev libbz2-dev git \
     && apt-get clean
 
 # Install extensions
