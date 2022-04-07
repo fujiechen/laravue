@@ -36,27 +36,10 @@ Documentation: [https://doc.laravue.dev](https://doc.laravue.dev)
 
 
 ### Installing
-#### Manual
-
-```bash
-# Clone the project and run composer
-composer create-project tuandm/laravue
-cd laravue
-
-# Migration and DB seeder (after changing your DB settings in .env)
-php artisan migrate --seed
-
-# Install dependency with NPM
-npm install
-
-# develop
-npm run dev # or npm run watch
-
-# Build on production
-npm run production
-```
 
 #### Docker
+*DO NOT CREATE .env from .env.example, the docker compose will generate it for you!*
+
 ```sh
 docker-compose up -d
 ```
@@ -65,9 +48,21 @@ Build static files within Laravel container with npm
 # Get laravel docker container ID from containers list
 docker ps
 
-docker exec -it <container ID> npm run dev # or npm run watch
-# Where <container ID> is the "laravel" container name, ex: src_laravel_1
+docker exec -it <container ID> bash 
+# Where <container ID> is the "laravel" container name, ex: laravue-laravel-1
+
+# inside docker container bash
+php artisan migrate --seed 
 ```
+
+Watch the docker container log 
+```sh
+docker logs laravue-laravel-1 -f
+```
+
+It will take a very long time for frontend dependency install
+wait until you can see `Laravel development server started: http://0.0.0.0:8000`
+
 Open http://localhost:8000 (laravel container port declared in `docker-compose.yml`) to access Laravue
 
 ## Running the tests
